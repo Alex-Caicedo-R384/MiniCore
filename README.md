@@ -117,6 +117,7 @@ public function index(Request $request)
 
     return view('gastos.index', compact('gastos', 'total_gastos'));
 }
+```
 
 ## Conclusion
 Este proyecto implementa una solución para gestionar y analizar los gastos de una empresa, utilizando Laravel y PHP. Se ha diseñado para ser fácil de usar y permite a los administradores filtrar los gastos por fecha y obtener resúmenes de los totales. Las tablas empleados, departamentos y gastos están interrelacionadas, lo que permite gestionar de forma eficiente la información de los gastos de los empleados y departamentos.
