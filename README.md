@@ -1,66 +1,240 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Autor
+Este proyecto fue desarrollado por Alex Caicedo Ramos. Puedes contactarlo a través de su correo electrónico: chevyagcr@gmail.com.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Proyecto de Gestión de Gastos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este proyecto tiene como objetivo desarrollar una aplicación web para gestionar los gastos de una empresa. La aplicación se basa en tres tablas relacionadas en la base de datos: **Empleado**, **Departamento** y **Gasto**. La funcionalidad principal de la aplicación es permitir al usuario filtrar y calcular los gastos registrados en un rango de fechas específico.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Descripción del Proyecto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+El sistema consta de las siguientes entidades:
 
-## Learning Laravel
+1. **Empleado**: Cada empleado tiene un `id` y un `nombre`.
+2. **Departamento**: Cada departamento tiene un `id` y un `nombre`.
+3. **Gasto**: Cada gasto tiene un `id`, una `fecha`, una `descripción`, un `monto`, un `id` de empleado y un `id` de departamento.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Funcionalidad Principal (Core)
+El core de la aplicación se centra en filtrar y calcular los gastos registrados en la base de datos. El usuario puede ingresar un rango de fechas (fecha de inicio y fecha de fin) y la aplicación devolverá los gastos dentro de ese rango, además de calcular el monto total de esos gastos.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Requisitos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **PHP** (preferentemente versión 8.0 o superior).
+2. **Composer** para la gestión de dependencias.
+3. **Laravel**: El framework PHP utilizado para desarrollar la aplicación.
+4. **MySQL** o cualquier base de datos compatible con Laravel.
+5. **Servidor local** como **XAMPP** o **Laragon**, o utilizar el servidor integrado de Laravel con `php artisan serve`.
+6. **Node.js** y **npm** para gestionar las dependencias de JavaScript y la construcción de los assets.
 
-## Laravel Sponsors
+## Instalación
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Sigue estos pasos para configurar el proyecto en tu máquina local:
 
-### Premium Partners
+1. Instala las dependencias de Laravel:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```bash
+    composer install
+    ```
 
-## Contributing
+2. Configura el archivo `.env` con los detalles de tu base de datos:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    cp .env.example .env
+    ```
 
-## Code of Conduct
+    Luego edita el archivo `.env` con los parámetros de tu base de datos:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=nombre_de_tu_base_de_datos
+    DB_USERNAME=tu_usuario
+    DB_PASSWORD=tu_contraseña
+    ```
 
-## Security Vulnerabilities
+3. Instala las dependencias de JavaScript:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    npm install
+    ```
 
-## License
+4. Ejecuta los assets con:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    npm run dev
+    ```
+
+5. Inicia el servidor de desarrollo de Laravel:
+
+    ```bash
+    php artisan serve
+    ```
+
+    Ahora puedes acceder a la aplicación a través de `http://localhost:8000`.
+
+## Estructura de la Base de Datos
+
+La base de datos tiene tres tablas: `empleados`, `departamentos` y `gastos`. A continuación se presentan los detalles de cada tabla:
+
+#### 1. Tabla **empleados**
+
+- **id**: Identificador único del empleado (clave primaria).
+- **nombre**: Nombre del empleado.
+
+#### 2. Tabla **departamentos**
+
+- **id**: Identificador único del departamento (clave primaria).
+- **nombre**: Nombre del departamento.
+
+#### 3. Tabla **gastos**
+
+- **id**: Identificador único del gasto (clave primaria).
+- **fecha**: Fecha en que se registró el gasto.
+- **descripcion**: Descripción del gasto.
+- **monto**: Monto del gasto.
+- **empleado_id**: Relación con el empleado que registró el gasto (clave foránea).
+- **departamento_id**: Relación con el departamento al que pertenece el gasto (clave foránea).
+
+## Funcionalidad para Filtrar y Calcular los Gastos
+
+La funcionalidad principal es permitir al usuario filtrar los gastos en función de un rango de fechas. El formulario de filtro incluye dos campos: `fecha_inicio` y `fecha_fin`, que corresponden al rango de fechas que se quiere consultar.
+
+El controlador `GastoController` incluye un método `index` que recibe las fechas de inicio y fin, filtra los gastos por ese rango y calcula el total de los gastos:
+
+```php
+public function index(Request $request)
+{
+    $gastos = Gasto::with(['empleado', 'departamento']);
+
+    // Filtrar por rango de fechas
+    if ($request->has('fecha_inicio') && $request->has('fecha_fin')) {
+        $gastos = $gastos->whereBetween('fecha', [$request->fecha_inicio, $request->fecha_fin]);
+    }
+
+    $gastos = $gastos->get();
+    $total_gastos = $gastos->sum('monto'); // Sumar el total de los gastos
+
+    return view('gastos.index', compact('gastos', 'total_gastos'));
+}
+# Proyecto de Gestión de Gastos
+
+Este proyecto tiene como objetivo desarrollar una aplicación web para gestionar los gastos de una empresa. La aplicación se basa en tres tablas relacionadas en la base de datos: **Empleado**, **Departamento** y **Gasto**. La funcionalidad principal de la aplicación es permitir al usuario filtrar y calcular los gastos registrados en un rango de fechas específico.
+
+## Descripción del Proyecto
+
+El sistema consta de las siguientes entidades:
+
+1. **Empleado**: Cada empleado tiene un `id` y un `nombre`.
+2. **Departamento**: Cada departamento tiene un `id` y un `nombre`.
+3. **Gasto**: Cada gasto tiene un `id`, una `fecha`, una `descripción`, un `monto`, un `id` de empleado y un `id` de departamento.
+
+## Funcionalidad Principal (Core)
+El core de la aplicación se centra en filtrar y calcular los gastos registrados en la base de datos. El usuario puede ingresar un rango de fechas (fecha de inicio y fecha de fin) y la aplicación devolverá los gastos dentro de ese rango, además de calcular el monto total de esos gastos.
+
+## Requisitos
+
+1. **PHP** (preferentemente versión 8.0 o superior).
+2. **Composer** para la gestión de dependencias.
+3. **Laravel**: El framework PHP utilizado para desarrollar la aplicación.
+4. **MySQL** o cualquier base de datos compatible con Laravel.
+5. **Servidor local** como **XAMPP** o **Laragon**, o utilizar el servidor integrado de Laravel con `php artisan serve`.
+6. **Node.js** y **npm** para gestionar las dependencias de JavaScript y la construcción de los assets.
+
+## Instalación
+
+Sigue estos pasos para configurar el proyecto en tu máquina local:
+
+1. Instala las dependencias de Laravel:
+
+    ```bash
+    composer install
+    ```
+
+2. Configura el archivo `.env` con los detalles de tu base de datos:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    Luego edita el archivo `.env` con los parámetros de tu base de datos:
+
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=nombre_de_tu_base_de_datos
+    DB_USERNAME=tu_usuario
+    DB_PASSWORD=tu_contraseña
+    ```
+
+3. Instala las dependencias de JavaScript:
+
+    ```bash
+    npm install
+    ```
+
+4. Ejecuta los assets con:
+
+    ```bash
+    npm run dev
+    ```
+
+5. Inicia el servidor de desarrollo de Laravel:
+
+    ```bash
+    php artisan serve
+    ```
+
+    Ahora puedes acceder a la aplicación a través de `http://localhost:8000`.
+
+## Estructura de la Base de Datos
+
+La base de datos tiene tres tablas: `empleados`, `departamentos` y `gastos`. A continuación se presentan los detalles de cada tabla:
+
+#### 1. Tabla **empleados**
+
+- **id**: Identificador único del empleado (clave primaria).
+- **nombre**: Nombre del empleado.
+
+#### 2. Tabla **departamentos**
+
+- **id**: Identificador único del departamento (clave primaria).
+- **nombre**: Nombre del departamento.
+
+#### 3. Tabla **gastos**
+
+- **id**: Identificador único del gasto (clave primaria).
+- **fecha**: Fecha en que se registró el gasto.
+- **descripcion**: Descripción del gasto.
+- **monto**: Monto del gasto.
+- **empleado_id**: Relación con el empleado que registró el gasto (clave foránea).
+- **departamento_id**: Relación con el departamento al que pertenece el gasto (clave foránea).
+
+## Funcionalidad para Filtrar y Calcular los Gastos
+
+La funcionalidad principal es permitir al usuario filtrar los gastos en función de un rango de fechas. El formulario de filtro incluye dos campos: `fecha_inicio` y `fecha_fin`, que corresponden al rango de fechas que se quiere consultar.
+
+El controlador `GastoController` incluye un método `index` que recibe las fechas de inicio y fin, filtra los gastos por ese rango y calcula el total de los gastos:
+
+```php
+public function index(Request $request)
+{
+    $gastos = Gasto::with(['empleado', 'departamento']);
+
+    // Filtrar por rango de fechas
+    if ($request->has('fecha_inicio') && $request->has('fecha_fin')) {
+        $gastos = $gastos->whereBetween('fecha', [$request->fecha_inicio, $request->fecha_fin]);
+    }
+
+    $gastos = $gastos->get();
+    $total_gastos = $gastos->sum('monto'); // Sumar el total de los gastos
+
+    return view('gastos.index', compact('gastos', 'total_gastos'));
+}```
+
+
+## Conclusion
+Este proyecto implementa una solución para gestionar y analizar los gastos de una empresa, utilizando Laravel y PHP. Se ha diseñado para ser fácil de usar y permite a los administradores filtrar los gastos por fecha y obtener resúmenes de los totales. Las tablas empleados, departamentos y gastos están interrelacionadas, lo que permite gestionar de forma eficiente la información de los gastos de los empleados y departamentos.
+
+
